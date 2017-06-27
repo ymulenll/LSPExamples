@@ -8,16 +8,27 @@ using System.Threading.Tasks;
 namespace ShippingCostCalculator
 {
     public class ShippingStrategy
-    {
-        protected decimal flatRate;
-
+    {   
         public ShippingStrategy(decimal flatRate)
-        {
-            // Invariants.
-            if (flatRate <= decimal.Zero)
-                throw new ArgumentOutOfRangeException("flatRate", "Flat rate must be positive and non-zero");
+        {   
+            this.FlatRate = flatRate;
+        }
 
-            this.flatRate = flatRate;
+        private decimal flatRate;
+        public decimal FlatRate
+        {
+            get
+            {
+                return this.flatRate;
+            }
+            set
+            {
+                // Invariants.
+                if (value <= decimal.Zero)
+                    throw new ArgumentOutOfRangeException("flatRate", "Flat rate must be positive and non-zero");
+
+                this.flatRate = value;
+            }
         }
 
         public virtual decimal CalculateShippingCost(

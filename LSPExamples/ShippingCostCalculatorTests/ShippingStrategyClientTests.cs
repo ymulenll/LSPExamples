@@ -3,6 +3,7 @@ using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ShippingCostCalculator;
+using System.Globalization;
 
 namespace ShippingCostCalculatorTests
 {
@@ -50,19 +51,19 @@ namespace ShippingCostCalculatorTests
         {
             ShippingStrategy strategy = GetShippigStrategy(1);
 
-            var shippigCost = strategy.CalculateShippingCost(1, null);
+            var shippigCost = strategy.CalculateShippingCost(1, RegionInfo.CurrentRegion);
 
             Assert.IsTrue(shippigCost > 0);
         }
 
         [TestMethod]
-        public void TestPostconditionsUsingForeach_PositiveNonZeroOutput()
+        public void TestPostconditionsAllStrategies_PositiveNonZeroOutput()
         {
             var strategies = GetAllShippigStrategies();
 
             foreach (var strategy in strategies)
             {
-                var shippigCost = strategy.CalculateShippingCost(1, null);
+                var shippigCost = strategy.CalculateShippingCost(1, RegionInfo.CurrentRegion);
 
                 Assert.IsTrue(shippigCost > 0);
             }
@@ -71,11 +72,10 @@ namespace ShippingCostCalculatorTests
         [TestMethod]
         public void TestInvariants_FlatRateSetToZeroShouldThrowException()
         {
-            WorldWideShippingStrategy strategy = new WorldWideShippingStrategy(1m);
-
-            strategy.FlatRate = 0;
-
-            Assert.IsTrue(strategy.FlatRate > 0);
+            ShippingStrategy strategy = GetShippigStrategy(1);
+            
+            Assert.ThrowsException<ArgumentOutOfRangeException>(
+               () => strategy.FlatRate = 0);
         }
     }
 }

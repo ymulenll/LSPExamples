@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp
+namespace ShippingCostCalculatorTests
 {
     [TestClass]
     public class ShippingStrategyTests

@@ -14,15 +14,15 @@ namespace ShippingCostCalculator
         {
         }
 
-        public decimal FlatRate
+        public new decimal FlatRate
         {
             get
             {
-                return base.flatRate;
+                return base.FlatRate;
             }
             set
             {
-                base.flatRate = value;
+                base.FlatRate = value;
             }
         }
 
@@ -38,8 +38,13 @@ namespace ShippingCostCalculator
                 throw new ArgumentNullException("destination", "Destination must be provided");
     
             // implementation
-            var shippingCost = decimal.Zero;
-            
+            var shippingCost = decimal.One;
+
+            if (destination == RegionInfo.CurrentRegion)
+            {
+                shippingCost = decimal.Zero;
+            }
+
             return shippingCost;
         }
     }
