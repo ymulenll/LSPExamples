@@ -21,9 +21,9 @@ namespace ConsoleApp
             Size<float> packageDimensionsInInches, 
             RegionInfo destination)
         {
-            var result = decimal.One;
+            var shippingCost = decimal.One;
 
-            return result;
+            return shippingCost;
         }
     }
 }
