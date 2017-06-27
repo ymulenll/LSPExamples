@@ -13,6 +13,10 @@ namespace ConsoleApp
 
         public ShippingStrategy(decimal flatRate)
         {
+            // Invariants.
+            if (flatRate <= decimal.Zero)
+                throw new ArgumentOutOfRangeException("flatRate", "Flat rate must be positive and non-zero");
+
             this.flatRate = flatRate;
         }
 
@@ -20,7 +24,15 @@ namespace ConsoleApp
             float packageWeightInKilograms, 
             RegionInfo destination)
         {
+            // Preconditions.
+            if (packageWeightInKilograms <= 0)
+                throw new ArgumentOutOfRangeException(nameof(packageWeightInKilograms), "Package weight must be positive and non-zero");
+
             var shippingCost = decimal.One;
+
+            // Postconditions.
+            if (shippingCost <= decimal.Zero)
+                throw new ArgumentOutOfRangeException("return", "The return value is out of range");
 
             return shippingCost;
         }
