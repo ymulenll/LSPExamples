@@ -7,44 +7,25 @@ using System.Threading.Tasks;
 
 namespace ShippingCostCalculator
 {
-    public class WorldWideShippingStrategy : ShippingStrategy
+    public class WorldWideShippingStrategy : IShippingStrategy
     {
         public WorldWideShippingStrategy(decimal flatRate)
-            : base(flatRate)
         {
+            this.FlatRate = flatRate;
         }
 
-        public new decimal FlatRate
-        {
-            get
-            {
-                return base.FlatRate;
-            }
-            set
-            {
-                base.FlatRate = value;
-            }
-        }
+        public decimal FlatRate { get; set; }
 
-        public override decimal CalculateShippingCost(
+        public decimal CalculateShippingCost(
             float packageWeightInKilograms, 
             RegionInfo destination)
         {
-            // Preconditions.
-            if (packageWeightInKilograms <= 0)
-                throw new ArgumentOutOfRangeException(nameof(packageWeightInKilograms), "Package weight must be positive and non-zero");
-
             if (destination == null)
                 throw new ArgumentNullException("destination", "Destination must be provided");
     
             // implementation
             var shippingCost = decimal.One;
-
-            if (destination == RegionInfo.CurrentRegion)
-            {
-                shippingCost = decimal.Zero;
-            }
-
+                        
             return shippingCost;
         }
     }

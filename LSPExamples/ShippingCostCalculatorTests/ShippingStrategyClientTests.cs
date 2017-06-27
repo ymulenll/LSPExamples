@@ -15,14 +15,14 @@ namespace ShippingCostCalculatorTests
             return new[]
             {
                 new ShippingStrategy(1m),
-                new WorldWideShippingStrategy(1m)
+                //new WorldWideShippingStrategy(1m)
             };
         }
 
         private ShippingStrategy GetShippigStrategy(decimal flatRate)
         {
-            //return new ShippingStrategy(1m);
-            return new WorldWideShippingStrategy(1m);
+            return new ShippingStrategy(1m);
+            //return new WorldWideShippingStrategy(1m);
         }        
 
         [TestMethod]
