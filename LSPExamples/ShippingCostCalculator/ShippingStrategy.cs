@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp
+namespace ShippingCostCalculator
 {
     public class ShippingStrategy
     {
@@ -28,6 +28,7 @@ namespace ConsoleApp
             if (packageWeightInKilograms <= 0)
                 throw new ArgumentOutOfRangeException(nameof(packageWeightInKilograms), "Package weight must be positive and non-zero");
 
+            // implementation
             var shippingCost = decimal.One;
 
             // Postconditions.

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp
+namespace ShippingCostCalculator
 {
     public class WorldWideShippingStrategy : ShippingStrategy
     {
@@ -30,7 +30,15 @@ namespace ConsoleApp
             float packageWeightInKilograms, 
             RegionInfo destination)
         {
-            var shippingCost = decimal.One;
+            // Preconditions.
+            if (packageWeightInKilograms <= 0)
+                throw new ArgumentOutOfRangeException(nameof(packageWeightInKilograms), "Package weight must be positive and non-zero");
+
+            if (destination == null)
+                throw new ArgumentNullException("destination", "Destination must be provided");
+    
+            // implementation
+            var shippingCost = decimal.Zero;
             
             return shippingCost;
         }
