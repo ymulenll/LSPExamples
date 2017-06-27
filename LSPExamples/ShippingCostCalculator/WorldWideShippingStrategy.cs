@@ -26,7 +26,9 @@ namespace ConsoleApp
             }
         }
 
-        public override decimal CalculateShippingCost(float packageWeightInKilograms, Size<float> packageDimensionsInInches, RegionInfo destination)
+        public override decimal CalculateShippingCost(
+            float packageWeightInKilograms, 
+            RegionInfo destination)
         {
             var shippingCost = decimal.One;
             

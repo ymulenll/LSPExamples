@@ -18,7 +18,6 @@ namespace ConsoleApp
 
         public virtual decimal CalculateShippingCost(
             float packageWeightInKilograms, 
-            Size<float> packageDimensionsInInches, 
             RegionInfo destination)
         {
             var shippingCost = decimal.One;
