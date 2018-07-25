@@ -14,8 +14,8 @@ namespace ShippingCostCalculator
             this.FlatRate = flatRate;
         }
 
-        private decimal flatRate;
-        public decimal FlatRate
+        protected decimal flatRate;
+        public virtual decimal FlatRate
         {
             get
             {

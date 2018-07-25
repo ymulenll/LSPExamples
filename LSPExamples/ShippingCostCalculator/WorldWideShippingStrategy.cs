@@ -12,17 +12,19 @@ namespace ShippingCostCalculator
         public WorldWideShippingStrategy(decimal flatRate)
             : base(flatRate)
         {
+            this.flatRate = flatRate;
         }
 
-        public new decimal FlatRate
+        protected decimal flatRate;
+        public override decimal FlatRate
         {
             get
             {
-                return base.FlatRate;
+                return this.flatRate;
             }
             set
             {
-                base.FlatRate = value;
+                this.flatRate = value;
             }
         }
 

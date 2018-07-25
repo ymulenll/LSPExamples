@@ -15,14 +15,14 @@ namespace ShippingCostCalculatorTests
             return new[]
             {
                 new ShippingStrategy(1m),
-                new WorldWideShippingStrategy(1m)
+                // new WorldWideShippingStrategy(1m)
             };
         }
 
         private ShippingStrategy GetShippigStrategy(decimal flatRate)
         {
-            //return new ShippingStrategy(1m);
-            return new WorldWideShippingStrategy(1m);
+            return new ShippingStrategy(1m);
+            //return new WorldWideShippingStrategy(1m);
         }        
 
         [TestMethod]
@@ -73,9 +73,10 @@ namespace ShippingCostCalculatorTests
         public void TestInvariants_FlatRateSetToZeroShouldThrowException()
         {
             ShippingStrategy strategy = GetShippigStrategy(1);
-            
-            Assert.ThrowsException<ArgumentOutOfRangeException>(
-               () => strategy.FlatRate = 0);
+
+            Action changeFlatRate = () => strategy.FlatRate = 0;
+
+            Assert.ThrowsException<ArgumentOutOfRangeException>(changeFlatRate);
         }
     }
 }
